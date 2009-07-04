@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+    <head>
+        <title>IdeasWall.org - Manage your ideas.</title>
+    </head>
+    <body>
+            <h1>The Desktop Rich Interface.</h1>
+            <script src="http://dl.javafx.com/1.1/dtfx.js"></script>
+            <script>
+                javafx(
+                    {
+                          archive: "IdeasWall.jar",
+                          draggable: true,
+                          width: 640,
+                          height: 400,
+                          code: "ideaswall.Main",
+                          name: "IdeasWall"
+                    }
+                );
+            </script>
+            <script type="text/javascript" src="http://java.com/js/deployJava.js">
+            </script>
+            <script type="text/javascript">
+                var url = "http://www.ideaswall.org/static/javafx/IdeasWall.jnlp";
+                deployJava.createWebStartLaunchButton (url, '1.6.0');
+                document.writeln (" (IdeasWall)");
+            </script>
+    </body>
+</html>

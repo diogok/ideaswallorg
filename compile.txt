@@ -1,0 +1,2 @@
+ ant compile ; java -cp ../appengine-java-sdk/lib/appengine-tools-api.jar:war/WEB-INF/classes/:../appengine-java-sdk/lib/user/appengine-api-1.0-sdk-1.2.1.jar com.google.appengine.tools.enhancer.Enhance war/WEB-INF/classes/ideas/JsonPDO.class war/WEB-INF/classes/ideas/Idea.class war/WEB-INF/classes/ideas/User.class war/WEB-INF/classes/ideas/NewUser.class war/WEB-INF/classes/ideas/NewIdea.class
+

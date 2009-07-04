@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" codebase="http://www.ideaswall.org/static/javafx/" href="IdeasWall_browser.jnlp">
+    <information>
+        <title>IdeasWall</title>
+        <vendor>${application.vendor}</vendor>
+        <homepage href=""/>
+        <description>IdeasWall</description>
+        <offline-allowed/>
+        <shortcut>
+            <desktop/>
+        </shortcut>
+    </information>
+    <resources>
+        <j2se version="1.5+"/>
+        <extension name="JavaFX Runtime" href="http://dl.javafx.com/1.2/javafx-rt.jnlp"/>
+        <jar href="IdeasWall.jar" main="true"/>
+    </resources>
+    <applet-desc name="IdeasWall" main-class="com.sun.javafx.runtime.adapter.Applet" width="200" height="200">
+        <param name="MainJavaFXScript" value="ideaswall.Main">
+    </applet-desc>
+    <update check="background">
+</jnlp>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 2.6//EN"
+        "http://tuckey.org/res/dtds/urlrewrite2.6.dtd">
+<urlrewrite>
+    <rule>
+        <from>^([^?]+)\.json.*$</from>
+        <to type="forward">/index.php?q=$1.json</to>
+    </rule>
+    <rule>
+        <from>^/?index.html$</from>
+        <to type="redirect">/static/</to>
+    </rule>
+    <rule>
+        <from>^/?$</from>
+        <to type="redirect">/static/</to>
+    </rule>
+</urlrewrite>
+

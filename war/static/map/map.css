@@ -1,0 +1,273 @@
+* {
+    margin: 0;
+    padding:0;
+}
+
+body {
+    background: none ;
+    padding: 0;
+    margin: 0;
+}
+
+#carregando {
+    position: absolute;
+    top: 0 ;
+    left: 35% ;
+    width: 250px;
+    height: 30px;
+    background-color: #e0ffd6 ;
+    color: blue ;
+    text-align: center;
+    border-left: thin black solid;
+    border-right: thin black solid;
+    border-bottom: thin black solid;
+}
+
+#map {
+    width: 100%;
+    height: 98%;
+}
+
+#menu {
+    list-style: none ;
+    margin: 0 ;
+    padding: 0;
+    text-align: left;
+    position: absolute;
+    border: 3px #cbcbcb solid;
+    border-top: none;
+    margin-left: -18px;
+    margin-top: 8px;
+    padding-right: 15px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    z-index: 5;
+    background-color: #ffffff;
+}
+
+#menu li {
+    font-size: 14px;
+    color: #a5a5a5 ;
+}
+
+.link {
+    cursor: pointer;
+    color: #1dadff;
+    text-decoration: underline;
+}
+
+#menu li.link {
+    color: #1dadff;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+button {
+    border: thin black solid;
+    background-color: #cfcfcf;
+    padding: 5px;
+}
+
+ul#header {
+    clear: both;
+    background-color: #ffffff ;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-top: 15px;
+    padding-right: 180px;
+    width: 100%;
+    height: 30px;
+    z-index: 1;
+}
+
+ul#header>li {
+    list-style: none;
+    margin: 0;
+    margin-left: 15px;
+    padding: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: inline;
+    float: left;
+    border: 3px #cbcbcb solid;
+    border-bottom: none;
+    z-index: 1;
+    min-width: 25px;
+    text-align: center;
+    width: auto !important ;
+    width: 25px;
+}
+
+ul#header>li>a {
+    text-decoration: none;
+}
+
+ul#header>li.ui-tabs-selected {
+    border: 3px #b4ed5f solid;
+    border-bottom: none;
+}
+
+.mI {
+    text-align: left;
+    background-color: #ffffff    ;
+}
+
+.tab {
+    z-index: 4 ;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-top: 3px #b4ed5f solid;
+}
+
+.ui-tabs-hide{
+    display: none;
+}
+
+.ideia {
+    position: absolute ;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    padding-left: 0.3em;
+    padding-right: 0.5em;
+    margin: 1em;
+    list-style : none ;
+    display: table;
+    width: 25em ;
+    border: 1px #b4ed5f solid;
+    background-color: #fdffd3 ;
+    font-size: 14px;
+    font-family: Verdana;
+}
+
+.criada {
+    background-color: #fdffd3 ;
+}
+
+
+.iniciada {
+    background-color: #ffffff ;
+}
+
+.concluida {
+    background-color: #ddfff9 ;
+}
+
+.ideiaText {
+    clear: both;
+    display: block;
+    margin: 0 ;
+    padding-top: 0.2em;
+    padding-bottom: 0.5em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    font-size: 16px;
+    text-align: justify;
+    font-style: normal ;
+    border-top: thin #b4ed5f solid ;
+    font-family: Verdana;
+}
+
+.priori {
+    color : #225500; 
+    margin: 0 ;
+    display: inline;
+    float: left;
+    font-size: 0.8em;
+    margin-right: 0.5em;
+    width: 8em ;
+    text-align: center;
+    cursor: pointer;
+}
+
+.P0 {
+    background-color: transparent ;
+}
+
+.P1 {
+    background-color: #00ff00;
+}
+
+.P2 {
+    background-color: #ff0000 ;
+}
+
+
+.ideiaDate {
+    color : #225500; 
+    margin: 0 ;
+    display: inline;
+    float: right;
+    font-size: 0.8em;
+}
+
+.ideiaDelete {
+    color : #225500; 
+    margin: 0 ;
+    display: inline ;
+    float: right ;
+    font-size: 0.8em ;
+}
+
+.ideiaEditar {
+    color : #225500; 
+    margin: 0 ;
+    display: inline ;
+    float: right ;
+    font-size: 0.8em ;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+
+.ideiaStatus {
+    color : #225500; 
+    margin: 0 ;
+    display: inline ;
+    float: left ;
+    font-size: 0.8em ;
+}
+
+.ideiaTags {
+    color : #225500; 
+    margin: 0 ;
+    display: inline;
+    float: left;
+    font-size: 0.8em;
+}
+
+.ideiaEdit {
+    margin: 0 ;
+    display: inline;
+    float: left;
+    font-size: 0.8em;
+}
+
+#tagNew {
+    border: thin black solid;
+    background: white;
+    padding: 10px;
+    height: 25px;
+}
+
+.ui-dialog-titlebar {
+display: none;
+}
+
+.ideia textarea{
+width: 330px;
+border:  1px #b4ed5f solid;
+height: 25px;
+}
+
+.ideia select {
+border:  1px #b4ed5f solid;
+}
+
+.ideia.isEditing .ideiaText{
+bordeR: none;
+}

@@ -1,0 +1,9 @@
+MIDlet-1: IdeasME,/br/blog/manifesto/ideaswall/lightbulb.png,br.blog.manifesto.ideaswall.IdeasME
+MIDlet-Jar-Size: 46155
+MIDlet-Jar-URL: IdeasME.jar
+MIDlet-Name: IdeasME
+MIDlet-Permissions: javax.microedition.io.Connector.http
+MIDlet-Vendor: manifesto.blog.br
+MIDlet-Version: 2.0
+MicroEdition-Configuration: CLDC-1.1
+MicroEdition-Profile: MIDP-2.1

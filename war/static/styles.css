@@ -1,0 +1,131 @@
+html, body {
+    background-color: #232323 ;
+    color: #e6e6e6 ;
+    padding: 0 ;
+    margin: 0;
+    text-align: center;
+	font-family: "Bitstream Charter","Georgia","Tahoma" , "sans-serif" ;
+}
+a , a:link, a:visited, a:active {
+    color: #a6a6a6; 
+    color: LIGHTGREEN; 
+    outline: none;
+    text-decoration: none;
+}
+a:hover {
+    color: skyblue;
+}
+h1 {
+    text-align: center;
+}
+ul {
+    margin: 0 ;
+    padding: 0 ;
+    display: block;
+}
+li {
+    margin: 0 ;
+    padding: 0 ;
+    list-style: none ;
+}
+ul.whatsnext {
+    margin-left: 25px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    list-style: disc; 
+}
+ul.whatsnext li {
+    list-style: disc; 
+    margin-left: 15px;
+}
+ul#nav {
+    width: 560px;
+    height: 30px;
+    background-color: #8b8b8b;
+    text-align: center;
+    padding-left: 80px;
+    margin: 0 auto;
+}
+ul#nav li {
+    float: left;
+    margin-right: 50px;
+    font-size: 20px;
+}
+ul#nav li a {
+    color: #e6e6e6 ;
+}
+div#description {
+    width: 640px;
+    margin: 0 auto;
+    text-align: left;
+}
+div#desc {
+    float: left;
+}
+div#opts {
+    float: right;
+}
+p.opt{
+    text-align: left;
+    font-size: 18px;
+    float: right;
+    clear: right;
+    background: url('images/bt.png');
+    height: 80px; 
+    width: 295px;
+    padding-left: 15px;
+    padding-top: 30px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+p.opt img {
+    vertical-align: bottom;
+    float: left;
+    border: none ;
+}
+p.opt strong {
+    display: block;
+}
+p.opt a{
+    color: #e6e6e6 ;
+}
+p.opt a:hover {
+    color: #e6e6e6 ;
+    color: skyblue;
+}
+p.desc {
+    width: 310px;
+    text-align: justify;
+    font-size: 16px;
+    float: left;
+    clear: left;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+div#badges {
+    clear: both;
+}
+div#badges img {
+    vertical-align: bottom;
+    margin-left: 20px;
+    margin-right: 20px;
+    border: none;
+}
+#register {
+    text-align: center;
+    padding-left: 0;
+    width: 310px;
+}
+#register a {
+    color: DARKRED;
+    font-size: 40px;
+}
+.shot {
+}
+.shot img {
+    max-width: 636px;
+    border: 2px #ccc solid;
+}
+.shot p {
+}

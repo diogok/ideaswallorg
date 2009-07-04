@@ -1,0 +1,226 @@
+package ideas;
+
+import javax.jdo.JDOHelper;
+import javax.jdo.PersistenceManager;
+import javax.jdo.PersistenceManagerFactory;
+import javax.jdo.Transaction;
+import com.google.appengine.api.datastore.Text ;
+import java.util.List;
+import java.util.ArrayList;
+
+public class NewStorage {
+
+    public User get(String login) {
+        PersistenceManager pm = PMF.get().getPersistenceManager();
+        //pm.setDetachAllOnCommit(true);
+        List<User> users = null ;
+        User user = null;
+        try {
+            String query = "select from " + User.class.getName() + " where login == '"+login+"' ";
+            users = (List<User>) pm.newQuery(query).execute();
+            if(users == null || users.size() <1) {
+                user = new User();
+            } else {
+                user = users.get(0);
+                user.ideas = getIdeas(user.login);
+            }
+        } finally {
+           //pm.close();
+        }
+        return user;
+    }
+
+    public List<Idea> getIdeas(String login){
+        PersistenceManager pm = PMF.get().getPersistenceManager();
+        //pm.setDetachAllOnCommit(true);
+        List<Idea> objs = null ;
+        try {
+            String query = "select from " + Idea.class.getName() + " where login == '"+login+"'";
+            objs = (List<Idea>) pm.newQuery(query).execute();
+            if(objs != null && objs.size() >=1) {
+                for(Idea i: objs) {
+                    System.out.println(i.login+" : "+i.id+" : "+i.key+" : "+i.idea.getValue());
+                }
+            }
+        } finally {
+           //pm.close();
+        }
+        return objs; 
+    }
+
+    public void delete() {
+        deleteUsers();
+        deleteIdeas();
+    }
+
+    private void deleteUsers() {
+        PersistenceManager pm = PMF.get().getPersistenceManager();
+        //pm.setDetachAllOnCommit(true);
+        Transaction tx= pm.currentTransaction();
+        String query = "select from " + User.class.getName() + " ";
+        List<User> users = (List<User>) pm.newQuery(query).execute();
+
+        if(users != null && users.size() >=1 ) {
+            for(User user: users) {
+                deleteUser(user);
+            }
+        }
+
+    }
+
+    private void deleteUser(User user) {
+        PersistenceManager pm = PMF.get().getPersistenceManager();
+        //pm.setDetachAllOnCommit(true);
+        Transaction tx= pm.currentTransaction();
+        //tx.begin();
+        User u = (User) pm.getObjectById(User.class,user.key);
+        pm.deletePersistent(u);
+        //tx.commit();
+    }
+
+    private void deleteIdeas() {
+        PersistenceManager pm = PMF.get().getPersistenceManager();
+        //pm.setDetachAllOnCommit(true);
+        Transaction tx= pm.currentTransaction();
+        String query = "select from " + Idea.class.getName() + " ";
+        List<Idea> ideas = (List<Idea>) pm.newQuery(query).execute();
+        if(ideas != null && ideas.size() >=1) {
+            for(Idea idea: ideas) {
+                deleteIdea(idea);
+            }
+        }
+
+    }
+
+    private void deleteIdea(Idea idea) {
+        PersistenceManager pm = PMF.get().getPersistenceManager();
+        //pm.setDetachAllOnCommit(true);
+        Transaction tx= pm.currentTransaction();
+        //tx.begin();
+        Idea i = (Idea) pm.getObjectById(Idea.class,idea.key);
+        pm.deletePersistent(i);
+        //tx.commit();
+    }
+
+    public void put(String login, User myUser) {
+        putUser(login,myUser);
+        putIdeas(login,myUser.ideas);
+    }
+
+    public void putUser(String login, User myUser) {
+        PersistenceManager pm = PMF.get().getPersistenceManager();
+        //pm.setDetachAllOnCommit(true);
+        Transaction tx= pm.currentTransaction();
+        User user = new User();
+        try {
+            String query = "select from " + User.class.getName() + " where login == '"+login+"' ";
+            try {
+                user = ((List<User>) pm.newQuery(query).execute()).get(0);
+                if(user == null) user = new User();
+            } catch(Exception e) {
+                user = new User();
+            }
+        } finally {
+           //pm.close();
+        }
+        user.login = myUser.login;
+        user.password = myUser.password;
+        updateUser(user);
+    }
+
+    public void updateUser(User user) {
+        PersistenceManager pm = PMF.get().getPersistenceManager();
+        //pm.setDetachAllOnCommit(true);
+        Transaction tx= pm.currentTransaction();
+        //tx.begin();
+        User u ;
+        if(user.key != null) {
+            try {
+                u = (User) pm.getObjectById(User.class,user.key);
+            } catch(Exception e) {
+                u = new User();
+            }
+        } else {
+            u  = new User();
+        }
+        u.login = user.login;
+        u.password = user.password;
+        pm.makePersistent(u);
+        //tx.commit();
+    }
+
+    public void putIdeas(String login,List<Idea> newIdeas) {
+        PersistenceManager pm = PMF.get().getPersistenceManager();
+        pm.setDetachAllOnCommit(true);
+        Transaction tx= pm.currentTransaction();
+        List<Long> keys = new ArrayList<Long>();
+        for(int i = 0;i < newIdeas.size();i++) {
+            tx.begin();
+            try {
+                String query = "select from " + Idea.class.getName() + " where id == '"+newIdeas.get(i).id+"'";
+                List<Idea> objs = (List<Idea>) pm.newQuery(query).execute();
+                if(objs.size() >= 1) {
+                    Long key = objs.get(0).key;
+                    keys.add(key);
+                } else {
+                    keys.add(null);
+                }
+            } finally {
+                //pm.close();
+            }
+            tx.commit();
+        }
+        tx = null;
+        pm = null;
+        close();
+        updateIdeas(keys,newIdeas);
+    }
+
+    public void updateIdeas(List<Long> keys, List<Idea> newIdeas) {
+        for(int i=0;i<keys.size();i++) {
+            if(keys.get(i) == null) {
+                insertIdea(newIdeas.get(i));
+            } else {
+                updateIdea(keys.get(i),newIdeas.get(i));
+            }
+        }
+    }
+
+
+    public void updateIdea(Long key,Idea newIdea) {
+        PersistenceManager pm = PMF.get().getPersistenceManager();
+        Transaction tx= pm.currentTransaction();
+        tx.begin();
+        Idea obj = pm.getObjectById(Idea.class,key) ;
+        obj.idea = newIdea.idea ;
+        obj.status = newIdea.status ;
+        obj.priori = newIdea.priori ;
+        obj.x = newIdea.x ;
+        obj.y = newIdea.y ;
+        obj.date = newIdea.date ;
+        obj.tags = newIdea.tags ;
+        obj.id = newIdea.id ; 
+        obj.login = newIdea.login; 
+        pm.makePersistent(obj);
+        tx.commit();
+        System.out.println("Updated "+obj.id+" : "+obj.idea.getValue()+" -> "+obj.key);
+    }
+
+    public void insertIdea(Idea obj) {
+        PersistenceManager pm = PMF.get().getPersistenceManager();
+        Transaction tx= pm.currentTransaction();
+        tx.begin();
+        System.out.println("Insert "+obj.id+" : "+obj.idea.getValue());
+        pm.makePersistent(obj);
+        tx.commit();
+    }
+
+    public void close() {
+        PersistenceManager pm = PMF.get().getPersistenceManager();
+        //pm.setDetachAllOnCommit(true);
+        if(!pm.isClosed()) {
+            System.out.println("Closed DB!");
+            pm.close();
+        }
+    }
+}
