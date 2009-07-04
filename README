@@ -1,0 +1,14 @@
+Quick instructions:
+- Java source (for persistence) is on src/ideas
+-- Only the New*.java files are in user
+- The java compile and enhance line is on compile.txt
+-- If any JDO is added, it should be also added on the enhancer
+- The PHP files are on war
+-- It provides a RESTful api
+-- Starts on index.php
+-- Uses RestServer (on utils)
+-- Uses Zend_Json (on utils)
+-- Using StorageWrapper.new.php 
+--- Ignore StorageWrapper.php (no new)
+-- the webpage is contained in the static folder
+- Be kind!
